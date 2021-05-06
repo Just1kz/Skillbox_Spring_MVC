@@ -31,6 +31,7 @@
 <body>
 
 <div id="root_container">
+    <a th:href="@{/auth}" >Out</a>
     <form method="post" th:action="@{/books/save}" th:object="${book}">
         <table>
             <tr>
@@ -55,8 +56,20 @@
     <form method="post" th:action="@{/books/remove}">
         <table>
             <tr>
+                <td th:object="${msg}" th:value="${msg}"></td>
+            </tr>
+            <tr>
                 <td>
                     <input type="text" placeholder="id number" th:name="bookIdToRemove">
+                </td>
+                <td>
+                    <input type="text" placeholder="author" th:name="bookAuthorToRemove">
+                </td>
+                <td>
+                    <input type="text" placeholder="title" th:name="bookTitleToRemove">
+                </td>
+                <td>
+                    <input type="text" placeholder="size" th:name="bookSizeToRemove">
                 </td>
                 <td>
                     <input type="submit" value="remove">
@@ -65,7 +78,28 @@
         </table>
     </form>
 
+    <form method="post" th:action="@{/books/filter}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="author" th:name="bookAuthorToFilter">
+                </td>
+                <td>
+                    <input type="text" placeholder="title" th:name="bookTitleToFilter">
+                </td>
+                <td>
+                    <input type="text" placeholder="size" th:name="bookSizeToFilter">
+                </td>
+                <td>
+                    <input type="submit" value="filter">
+                </td>
+            </tr>
+        </table>
+    </form>
 
+    <form method="get" th:action="@{/books/shelf}">
+        <input type="submit" value="disable filter">
+    </form>
 
     <table id="books">
         <tr>

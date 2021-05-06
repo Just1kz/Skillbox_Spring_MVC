@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class BookRepository implements ProjectRepository<Book> {
@@ -33,5 +34,58 @@ public class BookRepository implements ProjectRepository<Book> {
             }
         }
         return false;
+    }
+
+    @Override
+    public void removeAllBooksToAuthor(String author) {
+        for (Book book : retreiveAll()) {
+            if (book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
+                repo.remove(book);
+            }
+        }
+    }
+
+    @Override
+    public void removeAllBooksToTitle(String title) {
+        for (Book book : retreiveAll()) {
+            if (book.getTitle().toLowerCase().contains(title.toLowerCase())) {
+                repo.remove(book);
+            }
+        }
+    }
+
+    @Override
+    public boolean removeAllBooksToSize(Integer size) {
+        for (Book book : retreiveAll()) {
+            if (book.getSize().equals(size)) {
+                repo.remove(book);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public List<Book> filterByAuthor(String author) {
+        return repo.stream()
+                .filter(x -> x.getAuthor().toLowerCase().contains(author.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> filterByTitle(String title) {
+        return repo.stream()
+                .filter(x -> x.getTitle().toLowerCase().contains(title.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> filterBySize(Integer size) {
+        return repo.stream()
+                .filter(x -> x.getSize().equals(size))
+                .collect(Collectors.toList());
+    }
+
+    public int size() {
+        return repo.size();
     }
 }

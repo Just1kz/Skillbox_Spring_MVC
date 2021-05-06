@@ -27,4 +27,29 @@ public class BookService {
     public boolean removeBookById(Integer bookIdToRemove) {
         return bookRepo.removeItemById(bookIdToRemove);
     }
+
+    public void removeBookByAuthor(String author) {
+        bookRepo.removeAllBooksToAuthor(author);
+    }
+
+    public void removeBookByTitle(String title) {
+        bookRepo.removeAllBooksToTitle(title);
+    }
+
+    public boolean removeBookBySize(Integer size) {
+        bookRepo.removeAllBooksToSize(size);
+        return true;
+    }
+
+    public List<Book> filterByAuthor(String author) {
+        return bookRepo.filterByAuthor(author);
+    }
+
+    public List<Book> filterByTitle(String title) {
+        return bookRepo.filterByTitle(title);
+    }
+
+    public List<Book> filterBySize(Integer size) {
+        return bookRepo.filterBySize(size);
+    }
 }
