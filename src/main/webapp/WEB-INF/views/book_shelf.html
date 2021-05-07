@@ -53,11 +53,13 @@
         </table>
     </form>
 
+    <h3 style="text-align: center" th:text="${msg}"></h3>
+
     <form method="post" th:action="@{/books/remove}">
         <table>
-            <tr>
-                <td th:object="${msg}" th:value="${msg}"></td>
-            </tr>
+<!--            <tr>-->
+<!--                <td th:object="${msg}" th:value="${msg}"></td>-->
+<!--            </tr>-->
             <tr>
                 <td>
                     <input type="text" placeholder="id number" th:name="bookIdToRemove">

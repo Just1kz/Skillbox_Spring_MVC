@@ -1,4 +1,4 @@
-package org.example.app.service;
+package org.example.app.repository;
 
 import java.util.List;
 

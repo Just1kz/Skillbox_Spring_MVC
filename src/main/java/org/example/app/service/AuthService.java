@@ -1,6 +1,7 @@
 package org.example.app.service;
 
 import org.apache.log4j.Logger;
+import org.example.app.repository.AuthRepositoryImpl;
 import org.example.web.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

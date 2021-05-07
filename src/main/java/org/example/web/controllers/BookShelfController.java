@@ -31,6 +31,17 @@ public class BookShelfController {
         return "book_shelf";
     }
 
+    @GetMapping(value = "/shelfAfterRemove")
+    public String booksAfterRemove(
+            Model model,
+            @RequestParam(value = "msg") String msg) {
+        logger.info("got book shelft");
+        model.addAttribute("book", new Book());
+        model.addAttribute("msg", msg);
+        model.addAttribute("bookList", bookService.getAllBooks());
+        return "book_shelf";
+    }
+
     @GetMapping(value = "/shelfFiltered")
     public String booksWithFilter(Model model, @RequestParam(value = "filter") String filter) {
         logger.info("got book shelft");
@@ -89,7 +100,7 @@ public class BookShelfController {
             logger.info("delete by size is Done!");
         }
 
-        return "redirect:/books/shelf";
+        return "redirect:/books/shelfAfterRemove";
     }
 
     @PostMapping("/filter")

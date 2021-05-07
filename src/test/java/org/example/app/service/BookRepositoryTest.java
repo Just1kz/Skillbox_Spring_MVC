@@ -1,5 +1,6 @@
 package org.example.app.service;
 
+import org.example.app.repository.BookRepository;
 import org.example.web.dto.Book;
 import org.junit.Test;
 
