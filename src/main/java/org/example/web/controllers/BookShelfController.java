@@ -64,15 +64,17 @@ public class BookShelfController {
 
     @PostMapping("/save")
     public String saveBook(Book book, Model model) {
-        if (!"".equals(book.getAuthor())
-                || !"".equals(book.getTitle())
-                || book.getSize() > 0) {
+        if (!book.getAuthor().isEmpty()
+                || !book.getTitle().isEmpty()
+                || book.getSize() != null
+                || book.getId() != null) {
             bookService.saveBook(book);
+            model.addAttribute("msg", new StringBuffer("Book with ID: " + book.getId() + " is save!"));
+            logger.info("current repository size: " + bookService.getAllBooks().size());
         } else {
-            model.addAttribute("msg", new StringBuffer("Pls set attributes is book!"));
+            model.addAttribute("msg", new StringBuffer("Pls set parameters for save book!"));
         }
-        logger.info("current repository size: " + bookService.getAllBooks().size());
-        return "redirect:/books/shelf";
+        return "redirect:/books/shelfAfterRemove";
     }
 
     @PostMapping("/remove")

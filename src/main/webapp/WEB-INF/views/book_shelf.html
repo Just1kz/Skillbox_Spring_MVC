@@ -38,16 +38,16 @@
                 <!--      table row-->
                 <td>
                     <!--table data-->
-                    <input type="text" placeholder="author" th:field="*{author}">
+                    <input type="text" placeholder="author" id="author" th:field="*{author}">
                 </td>
                 <td>
-                    <input type="text" placeholder="book_title" th:field="*{title}">
+                    <input type="text" placeholder="book_title" id="title" th:field="*{title}">
                 </td>
                 <td>
-                    <input type="text" placeholder="size (pages)" th:field="*{size}">
+                    <input type="text" placeholder="size (pages)" id="size" th:field="*{size}">
                 </td>
                 <td>
-                    <input type="submit" value="save">
+                    <input type="submit" value="save" onclick="validate()">
                 </td>
             </tr>
         </table>
