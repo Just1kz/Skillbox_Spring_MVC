@@ -8,7 +8,7 @@ public interface ProjectRepository<Book> extends FilterBooksInRepository {
 
     void store(Book book);
 
-    boolean removeItemById(Integer bookIdToRemove);
+    boolean removeItemById(String bookIdToRemove);
 
     void removeAllBooksToAuthor(String author);
 

@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.example.app.service.BookService;
 import org.example.web.dto.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "books")
+@Scope("singleton")
 public class BookShelfController {
 
     private final Logger logger = Logger.getLogger(BookShelfController.class);
@@ -25,13 +27,13 @@ public class BookShelfController {
 
     @GetMapping(value = "/shelf")
     public String books(Model model) {
-        logger.info("got book shelft");
+        logger.info(this.toString());
         model.addAttribute("book", new Book());
         model.addAttribute("bookList", bookService.getAllBooks());
         return "book_shelf";
     }
 
-    @GetMapping(value = "/shelfAfterRemove")
+    @GetMapping(value = "/shelfAfterRemoveOrSave")
     public String booksAfterRemove(
             Model model,
             @RequestParam(value = "msg") String msg) {
@@ -74,12 +76,12 @@ public class BookShelfController {
         } else {
             model.addAttribute("msg", new StringBuffer("Pls set parameters for save book!"));
         }
-        return "redirect:/books/shelfAfterRemove";
+        return "redirect:/books/shelfAfterRemoveOrSave";
     }
 
     @PostMapping("/remove")
     public String removeBook(
-            @RequestParam(value = "bookIdToRemove") Integer bookIdToRemove,
+            @RequestParam(value = "bookIdToRemove") String bookIdToRemove,
             @RequestParam(value = "bookAuthorToRemove") String bookAuthorToRemove,
             @RequestParam(value = "bookTitleToRemove") String bookTitleToRemove,
             @RequestParam(value = "bookSizeToRemove") Integer bookSizeToRemove,
@@ -102,7 +104,7 @@ public class BookShelfController {
             logger.info("delete by size is Done!");
         }
 
-        return "redirect:/books/shelfAfterRemove";
+        return "redirect:/books/shelfAfterRemoveOrSave";
     }
 
     @PostMapping("/filter")

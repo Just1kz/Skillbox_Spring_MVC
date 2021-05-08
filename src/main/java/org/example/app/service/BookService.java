@@ -1,5 +1,6 @@
 package org.example.app.service;
 
+import org.apache.log4j.Logger;
 import org.example.app.repository.BookRepository;
 import org.example.app.repository.ProjectRepository;
 import org.example.web.dto.Book;
@@ -10,8 +11,8 @@ import java.util.List;
 
 @Service
 public class BookService {
-
     private final ProjectRepository bookRepo;
+    private final Logger logger = Logger.getLogger(BookService.class);
 
     @Autowired
     public BookService(BookRepository bookRepo) {
@@ -26,7 +27,7 @@ public class BookService {
             bookRepo.store(book);
     }
 
-    public boolean removeBookById(Integer bookIdToRemove) {
+    public boolean removeBookById(String bookIdToRemove) {
         return bookRepo.removeItemById(bookIdToRemove);
     }
 
@@ -53,5 +54,13 @@ public class BookService {
 
     public List<Book> filterBySize(Integer size) {
         return bookRepo.filterBySize(size);
+    }
+
+    private void defaultInit() {
+        logger.info("default INIT in book service bean");
+    }
+
+    private void defaultDestroy() {
+        logger.info("default DESTROY in book service bean");
     }
 }
