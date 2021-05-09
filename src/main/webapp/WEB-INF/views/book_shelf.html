@@ -39,15 +39,18 @@
                 <td>
                     <!--table data-->
                     <input type="text" placeholder="author" id="author" th:field="*{author}">
+                    <p th:if="${#fields.hasErrors('size')}">aga</p>
                 </td>
                 <td>
                     <input type="text" placeholder="book_title" id="title" th:field="*{title}">
+                    <p th:if="${#fields.hasErrors()}">X</p>
                 </td>
                 <td>
                     <input type="text" placeholder="size (pages)" id="size" th:field="*{size}">
+                    <p th:if="${#fields.hasErrors('size')}">field value must be digit and less than 4 signs</p>
                 </td>
                 <td>
-                    <input type="submit" value="save" onclick="validate()">
+                    <input type="submit" value="save" >
                 </td>
             </tr>
         </table>
@@ -55,26 +58,29 @@
 
     <h3 style="text-align: center" th:text="${msg}"></h3>
 
-    <form method="post" th:action="@{/books/remove}">
+    <form method="post" th:action="@{/books/remove}" th:object="${bookIdToRemove}">
         <table>
 <!--            <tr>-->
 <!--                <td th:object="${msg}" th:value="${msg}"></td>-->
 <!--            </tr>-->
             <tr>
                 <td>
-                    <input type="text" placeholder="id number" th:name="bookIdToRemove">
+                    <input type="text" placeholder="id number" th:field="*{id}">
                 </td>
-                <td>
-                    <input type="text" placeholder="author" th:name="bookAuthorToRemove">
-                </td>
-                <td>
-                    <input type="text" placeholder="title" th:name="bookTitleToRemove">
-                </td>
-                <td>
-                    <input type="text" placeholder="size" th:name="bookSizeToRemove">
-                </td>
+<!--                <td>-->
+<!--                    <input type="text" placeholder="author" th:name="bookAuthorToRemove">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="text" placeholder="title" th:name="bookTitleToRemove">-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <input type="text" placeholder="size" th:name="bookSizeToRemove">-->
+<!--                </td>-->
                 <td>
                     <input type="submit" value="remove">
+                </td>
+                <td th:if="${#fields.hasErrors()}">
+                    <p>Wrong id or not found</p>
                 </td>
             </tr>
         </table>
