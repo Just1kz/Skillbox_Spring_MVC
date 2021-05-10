@@ -1,12 +1,10 @@
-package org.example.web.dto;
+package org.example.web.dto.dataBookToAction;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class Book {
-
-    private String id;
+public class BookFilter {
 
     @NotEmpty
     private String author;
@@ -17,14 +15,6 @@ public class Book {
     @Digits(integer = 4, fraction = 0)
     @NotNull
     private Integer size;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getAuthor() {
         return author;
@@ -52,17 +42,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{"
-                + "id="
-                + id
-                + ", author='"
-                + author
-                + '\''
-                + ", title='"
-                + title
-                + '\''
-                + ", size="
-                + size
-                + '}';
+        return "BookFilter{" +
+                "author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", size=" + size +
+                '}';
     }
 }

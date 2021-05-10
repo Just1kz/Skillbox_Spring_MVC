@@ -10,5 +10,4 @@ public class ErrorController {
     public String notFoundError() {
         return "errors/404";
     }
-
 }

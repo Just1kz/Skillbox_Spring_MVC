@@ -1,8 +1,8 @@
-package org.example.web.dto;
+package org.example.web.dto.dataBookToAction;
 
 import javax.validation.constraints.NotEmpty;
 
-public class BookIdToRemove {
+public class BookIdToAction {
 
     @NotEmpty
     private String id;
@@ -15,10 +15,4 @@ public class BookIdToRemove {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "id='"
-                + id
-                + '\'';
-    }
 }
